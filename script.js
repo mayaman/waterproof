@@ -195,7 +195,7 @@ let captions = [
     ["wp", "which is very much used"],
     ["wp", "a classic"],
     ["A tiny bit of", "wp"],
-    ["finish it off with the", "wp"],
+    ["Finish it off with the", "wp"],
     ["I pretty much only use", "wp"],
     ["The", "wp"],
     ["The next step is my", "wp"],
@@ -232,6 +232,8 @@ console.log("*CLICK* or press *SPACE* to change channels");
 console.log("★.｡.:*☆:**:. ⓦ𝕖𝓑s𝕚𝓉𝐄 Ｂʸ 𝓶ⓐ𝐲ᗩ 𝐌𝕒𝓝 .:**:.☆*.:｡.★ ♡ www.mayaontheinter.net ♡ 萬美亞");
 console.log("https://www.youtube.com/watch?v=dntyqXZLk3g&list=PLztAHXmlMZFS9ZN7GTlZ2UOB2JmxICdt8&index=7&ab_channel=Vogue");
 console.log("GRWM 4EVER XOXOXO");
+let seed = Math.floor(Date.now() / 60_000);
+let rng = xmur3(seed.toString());     // seed the PRNG
 
 window.addEventListener("resize", onWindowResize);
 // document.addEventListener('keyup', event => {
@@ -243,12 +245,18 @@ window.addEventListener("resize", onWindowResize);
 //     }
 // });
 
-// document.addEventListener('click', event => {
-//     toggleModes();
-// });
+let started = false;
 
-setTypeSize();
-toggleModes();
+document.addEventListener('click', event => {
+    if (!started) {
+        setTypeSize();
+        toggleModes();
+        started = true;
+    }
+
+});
+
+
 
 function toggleModes() {
     mode = "caption";
@@ -299,7 +307,8 @@ function renderCaption() {
         }
         captionDiv.innerHTML = currentCaption;
         currentCaptionIndex++;
-        const newInterval = 111 + Math.random() * 333;
+        // const newInterval = 111 + Math.random() * 333;
+        const newInterval = 111;
         captionTypingTimeout = setTimeout(() => {
             renderText();
         }, newInterval);
@@ -313,16 +322,70 @@ function renderCaption() {
     }
 }
 
+function xmur3(str) {                  // 32-bit hash → returns a seeder fn
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+        h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+        h = (h << 13) | (h >>> 19);
+    }
+    return () => {
+        h = Math.imul(h ^ (h >>> 16), 2246822507);
+        h = Math.imul(h ^ (h >>> 13), 3266489909);
+        return (h ^= h >>> 16) >>> 0;     // unsigned 32-bit int
+    };
+}
+
+function mulberry32(a) {               // deterministic PRNG
+    return () => {
+        let t = (a += 0x6D2B79F5);
+        t = Math.imul(t ^ (t >>> 15), 1 | t);
+        t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296; // 0 ≤ x < 1
+    };
+}
+
+/* -------------------------------------------------
+   Public API: getSharedRandom(min, max, bucketMs)
+   ------------------------------------------------- */
+/**
+ * Returns a deterministic random integer in [min, max] inclusive.
+ * All browsers inside the same time bucket get the same value.
+ *
+ * @param {number} min       lower bound (inclusive)
+ * @param {number} max       upper bound (inclusive)
+ * @param {number} bucketMs  bucket size in ms (default = 60 000)
+ */
+function getSharedRandom(min, max, bucketMs = 10_000) {
+    // 1. Build the seed from the current time bucket
+    const now = Date.now();
+    const seedStr = String(Math.floor(now / bucketMs));
+
+    // 2. Hash that seed to diffuse patterns
+    const seed32 = xmur3(seedStr)();   // 32-bit integer
+
+    // 3. Plug into a fast PRNG
+    const rng = mulberry32(seed32);
+
+    // 4. Scale to requested range
+    const rand = rng();              // 0 ≤ rand < 1
+    return Math.floor(rand * (max - min + 1)) + min;
+}
+
 function chooseNewCaption() {
     currentCaptionIndex = 0;
     currentCaption = "";
     const newCaptionIndex = Math.floor(Math.random() * captions.length);
-    let chosenCaptionArray = captions[newCaptionIndex];
-
+    // let chosenCaptionArray = captions[newCaptionIndex];
+    // seed = Math.floor(Date.now() / 60_000);
+    // rng = xmur3(seed.toString());
+    let chosenCaptionArray = captions[getSharedRandom(0, captions.length)]
     let finalCaption = "";
     for (let w = 0; w < chosenCaptionArray.length; w++) {
         if (chosenCaptionArray[w] == "wp") {
-            finalCaption = finalCaption + waterproofBeautyProducts[Math.floor(Math.random() * waterproofBeautyProducts.length)] + " ";
+            // finalCaption = finalCaption + waterproofBeautyProducts[Math.floor(Math.random() * waterproofBeautyProducts.length)] + " ";
+            // rng = xmur3(seed.toString());
+            finalCaption = finalCaption + waterproofBeautyProducts[getSharedRandom(0, waterproofBeautyProducts.length)] + " ";
+
         } else {
             finalCaption = finalCaption + chosenCaptionArray[w] + " ";
         }

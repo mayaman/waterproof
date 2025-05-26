@@ -2,7 +2,7 @@ body {
     width: 100vw;
     height: 100vh;
     /* background-color: #820055; */
-    background-color: black;
+    background-color: white;
     transition: background-color 1s ease;
     overflow: hidden;
     padding: 0px;
@@ -25,30 +25,11 @@ body {
 .captionWrapper {
     width: 100%;
     position: absolute;
-    bottom: 4%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     max-width: 88vw;
 }
-
-
-/* .captionWrapper {
-    width: 100%;
-    position: absolute;
-    bottom: 10%;
-    left: 51%;
-    transform: translate(-50%, 0);
-    max-width: 54vw;
-} */
-
-/* .captionWrapper {
-    width: 100%;
-    position: absolute;
-    top: 25%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    max-width: 38vw;
-} */
 
 #captions {
     width: 100vw;
@@ -66,7 +47,7 @@ body {
     font-weight: bold;
     text-align: center;
     /* font-size: 2.8vw; */
-    font-size: 2vw;
+    font-size: 10vw;
     /* filter: drop-shadow(0px 0px 0.01em #000000); */
     -webkit-text-stroke-width: 0.0333em;
     -webkit-text-stroke-color: #000000;
