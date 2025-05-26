@@ -329,12 +329,12 @@ function chooseNewCaption() {
     }
     console.log('final caption: ', finalCaption);
     // finalCaption = "I really, really love this Lights, Camera, Splashes™ Waterproof Mascara";
-    // newCaption = finalCaption.replaceAll('.', '').replaceAll(',', '');
-    newCaption = finalCaption;
+    newCaption = finalCaption.replaceAll('.', '');
+    // newCaption = finalCaption;
 
-    captions.splice(newCaptionIndex, 1);
+    // captions.splice(newCaptionIndex, 1);
     console.log('new caption: ', newCaption);
-
+    console.log(captions);
     // If all captions have been shown, reset caption library
     if (captions.length < 1) {
         captions = [...originalCaptions];
@@ -360,12 +360,11 @@ function chooseNewCaption() {
         newCaptionArray[wIndex] = '<span class="waterproof">Waterproof</span>';
     }
     console.log(newCaptionArray);
-    // newCaptionArray = audioPop(newCaptionArray);
-    // if (newCaption.length >= doubleLineLength) {
-    //     console.log("splitting double line!")
-    //     const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
-    //     newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
-    // }
+    if (newCaption.length >= doubleLineLength) {
+        console.log("splitting double line!")
+        const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
+        newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
+    }
 
 }
 
