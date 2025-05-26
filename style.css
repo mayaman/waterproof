@@ -1,9 +1,8 @@
 body {
     width: 100vw;
     height: 100vh;
-    /* background-color: #820055; */
-    background-color: black;
-    transition: background-color 1s ease;
+    background-color: transparent;
+    /* transition: background-color 1s ease; */
     overflow: hidden;
     padding: 0px;
     text-align: center;
