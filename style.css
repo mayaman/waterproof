@@ -1,0 +1,115 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: #820055; */
+    background-color: black;
+    transition: background-color 1s ease;
+    overflow: hidden;
+    padding: 0px;
+    text-align: center;
+    margin: 0px auto;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-image: url("assets/tubegirl_screenshot.png"); */
+    /* background-image: url("assets/tubegirl_2.png"); */
+
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: contain;
+    /* Resize the background image to cover the entire container */
+
+}
+
+.captionWrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 88vw;
+}
+
+
+/* .captionWrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    left: 51%;
+    transform: translate(-50%, 0);
+    max-width: 54vw;
+} */
+
+/* .captionWrapper {
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    max-width: 38vw;
+} */
+
+#captions {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#caption {
+    display: inline;
+    color: #ffffff;
+    padding: 0 1vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    /* font-size: 2.8vw; */
+    font-size: 2vw;
+    /* filter: drop-shadow(0px 0px 0.01em #000000); */
+    -webkit-text-stroke-width: 0.0333em;
+    -webkit-text-stroke-color: #000000;
+    -webkit-font-smoothing: antialiased;
+}
+
+.waterproof {
+    /* color: blue; */
+    /* filter: drop-shadow(0px 0px 0.1em #000000); */
+    font-style: italic;
+    white-space: nowrap;
+}
+
+#comments {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    text-align: left;
+    display: inline;
+}
+
+.text {
+    position: absolute;
+    display: inline;
+    text-align: left;
+    opacity: 1;
+}
+
+mark {
+    display: inline;
+    background-color: #f0f5f7;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+::-moz-selection {
+    color: #ffffff;
+    background: #000000;
+}
+
+::selection {
+    color: #ffffff;
+    background: #000000;
+}
