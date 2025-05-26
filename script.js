@@ -360,12 +360,11 @@ function chooseNewCaption() {
         newCaptionArray[wIndex] = '<span class="waterproof">Waterproof</span>';
     }
     console.log(newCaptionArray);
-    if (newCaption.length >= doubleLineLength) {
-        console.log("splitting double line!")
-        const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
-        newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
-    }
-
+    // if (newCaption.length >= doubleLineLength) {
+    //     console.log("splitting double line!")
+    //     const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
+    //     newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
+    // }
 }
 
 function randomIntFromInterval(min, max) {
