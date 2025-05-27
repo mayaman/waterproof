@@ -329,7 +329,7 @@ function chooseNewCaption() {
     }
     console.log('final caption: ', finalCaption);
     // finalCaption = "I really, really love this Lights, Camera, Splashes™ Waterproof Mascara";
-    finalCaption = "My loyalty lies with the Boi-ing Cakeless Full Coverage Waterproof Liquid Concealer"
+    // finalCaption = "My loyalty lies with the Boi-ing Cakeless Full Coverage Waterproof Liquid Concealer"
     newCaption = finalCaption.replaceAll('.', '');
     // newCaption = finalCaption;
 
