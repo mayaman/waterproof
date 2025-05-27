@@ -9,14 +9,16 @@ body {
     margin: 0px auto;
     display: block;
     font-family: Arial, Helvetica, sans-serif;
-    /* background-image: url("assets/tubegirl_screenshot.png"); */
-    /* background-image: url("assets/tropezwebsite.png"); */
+    /* background-image: url("assets/tubegirl_screenshot.png");
+    background-size: contain; */
 
+    /* background-image: url("assets/tropezwebsite.png");
+    background-size: cover; */
     background-position: center;
     /* Center the image */
     background-repeat: no-repeat;
     /* Do not repeat the image */
-    background-size: cover;
+   
     /* Resize the background image to cover the entire container */
 
 }
@@ -47,7 +49,7 @@ body {
     top: 25%;
     left: 45%;
     transform: translate(-50%, -50%);
-    max-width: 38vw;
+    max-width: 35vw;
 } */
 
 #captions {
@@ -60,18 +62,20 @@ body {
 
 #caption {
     display: inline;
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: black;
     padding: 0 1vw;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
     /* font-size: 2.8vw; */
     font-size: 2.1vw;
-    filter: drop-shadow(0px 0px 0.0333em #000000);
 
-    -webkit-text-stroke-width: 0.0433em;
+    /* filter: drop-shadow(0px 0px 0.0222em #000000); */
+
+    /* -webkit-text-stroke-width: 0.0433em;
     -webkit-text-stroke-color: #000000;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased; */
 }
 
 #caption:hover {
