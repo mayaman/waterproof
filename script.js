@@ -138,7 +138,7 @@ let captions = [
     ["wp", "I have used this since I was 18."],
     ["A little product called", "wp"],
     ["I really love, love, love this", "wp"],
-    ["it's this", "wp"],
+    ["It's this", "wp"],
     ["Now I’m gonna take this", "wp"],
     ["The great", "wp"],
     ["First up is this", "wp"],
