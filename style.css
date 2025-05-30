@@ -12,7 +12,7 @@ body {
     /* background-image: url("assets/tubegirl_screenshot.png");
     background-size: contain; */
 
-    /* background-image: url("assets/tropezwebsite.png");
+    /* background-image: url("assets/tropezwebsite_2.png");
     background-size: cover; */
     background-position: center;
     /* Center the image */
@@ -90,6 +90,7 @@ a {
     color: #fddaef;
     filter: drop-shadow(0px 0px 0.1em #fddaef);
     -webkit-text-stroke-color: #fddaef;
+    cursor: pointer;
     /* filter: drop-shadow(0px 0px 0.111em #000000); */
 }
 
