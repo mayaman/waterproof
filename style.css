@@ -30,7 +30,6 @@ body {
     left: 50%;
     transform: translate(-50%, 0);
     max-width: 88vw;
-    cursor: pointer;
 }
 
 
@@ -58,9 +57,16 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+
+a {
+    text-decoration: none !important;
 }
 
 #caption {
+    cursor: pointer;
     display: inline;
     /* color: #ffffff; */
     color: black;
@@ -71,21 +77,20 @@ body {
     /* font-size: 5vw; */
     font-size: 2.8vw;
     /* font-size: 2.1vw; */
+    text-decoration: none;
 
     /* filter: drop-shadow(0px 0px 0.0222em #000000); */
 
     /* -webkit-text-stroke-width: 0.0433em;
     -webkit-text-stroke-color: #000000;
     -webkit-font-smoothing: antialiased; */
-
 }
 
 #caption:hover {
-    /* color: #fddaef;
+    color: #fddaef;
     filter: drop-shadow(0px 0px 0.1em #fddaef);
-    -webkit-text-stroke-color: #fddaef; */
-
-    filter: drop-shadow(0px 0px 0.111em #000000);
+    -webkit-text-stroke-color: #fddaef;
+    /* filter: drop-shadow(0px 0px 0.111em #000000); */
 }
 
 .waterproof {

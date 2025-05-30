@@ -219,65 +219,32 @@ let allText = [];
 let mode = "comment";
 let width = window.innerWidth;
 let height = window.innerHeight;
-let typeSizeMin = 12;
-let typeSizeMax = 88;
 let speedMode = false;
 let typingTimeout;
 let captionTypingTimeout;
 let newCommentTimeout;
 let captionTimeout;
 let colorpalette = ["#f38db2", "#8799ac", "#874830", "#c28c70", "#ecac9d"];
-captionDiv.style.display = "inline";
 console.log("*CLICK* or press *SPACE* to change channels");
 console.log("★.｡.:*☆:**:. ⓦ𝕖𝓑s𝕚𝓉𝐄 Ｂʸ 𝓶ⓐ𝐲ᗩ 𝐌𝕒𝓝 .:**:.☆*.:｡.★ ♡ www.mayaontheinter.net ♡ 萬美亞");
 console.log("https://www.youtube.com/watch?v=dntyqXZLk3g&list=PLztAHXmlMZFS9ZN7GTlZ2UOB2JmxICdt8&index=7&ab_channel=Vogue");
 console.log("GRWM 4EVER XOXOXO");
 
 window.addEventListener("resize", onWindowResize);
-// document.addEventListener('keyup', event => {
-//     if (event.code === 'Space') {
-//         toggleModes();
-//     } else if (event.code == 'KeyS') {
-//         speedMode = !speedMode;
-//         console.log('speed mode set to:', speedMode);
-//     }
-// });
 
-// document.addEventListener('click', event => {
-//     toggleModes();
-// });
+setTimeout(() => {
+    kickoff();
+}, 5000);
 
-setTypeSize();
-toggleModes();
 
-function toggleModes() {
+function kickoff() {
     mode = "caption";
     captionsDiv.style.display = "inline";
+    captionsDiv.style.opacity = "1";
     chooseNewCaption();
     renderText();
     clearTimeout(newCommentTimeout);
     clearTimeout(typingTimeout);
-}
-
-function setTypeSize() {
-    // console.log('setting type size: ', width);
-    if (width >= 4000) {
-        // 4K
-        typeSizeMin = 56;
-        typeSizeMax = 108;
-    } else if (width > 2000) {
-        // TV SIZE
-        typeSizeMin = 24;
-        typeSizeMax = 96;
-    } else if (width > 820) {
-        // DESKTOP
-        typeSizeMin = 12;
-        typeSizeMax = 48; // 48
-    } else {
-        // MOBILE
-        typeSizeMin = 12;
-        typeSizeMax = 24;
-    }
 }
 
 function renderText() {
@@ -322,7 +289,7 @@ function chooseNewCaption() {
     let finalCaption = "";
     for (let w = 0; w < chosenCaptionArray.length; w++) {
         if (chosenCaptionArray[w] == "wp") {
-            finalCaption = finalCaption + waterproofBeautyProducts[Math.floor(Math.random() * waterproofBeautyProducts.length)] + " ";
+            finalCaption = finalCaption + " " + waterproofBeautyProducts[Math.floor(Math.random() * waterproofBeautyProducts.length)] + " ";
         } else {
             finalCaption = finalCaption + chosenCaptionArray[w] + " ";
         }
@@ -350,7 +317,7 @@ function chooseNewCaption() {
     newCaption = newCaption.replaceAll(/\bi\b/g, "I"); // Only an isolated I should be uppercase
     newCaption = newCaption.replaceAll(/i'/g, "I'");
 
-    const doubleLineLength = 43;
+    const doubleLineLength = 55;
 
     newCaptionArray = newCaption.split(" ");
     let wIndex = newCaptionArray.indexOf('Waterproof');
@@ -361,11 +328,11 @@ function chooseNewCaption() {
         newCaptionArray[wIndex] = '<span class="waterproof">Waterproof</span>';
     }
     console.log(newCaptionArray);
-    // if (newCaption.length >= doubleLineLength) {
-    //     console.log("splitting double line!")
-    //     const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
-    //     newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
-    // }
+    if (newCaption.length >= doubleLineLength) {
+        console.log("splitting double line!")
+        const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
+        newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
+    }
 }
 
 function randomIntFromInterval(min, max) {
