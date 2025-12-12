@@ -3,12 +3,13 @@ body {
     height: 100vh;
     background-color: transparent;
     /* transition: background-color 1s ease; */
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 0px;
     text-align: center;
     margin: 0px auto;
     display: block;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
     /* background-image: url("assets/tubegirl_screenshot.png");
     background-size: contain; */
 
@@ -24,12 +25,12 @@ body {
 }
 
 .captionWrapper {
-    width: 100%;
+    /* width: 100%;
     position: absolute;
     bottom: 4%;
     left: 50%;
     transform: translate(-50%, 0);
-    max-width: 88vw;
+    max-width: 88vw; */
 }
 
 
@@ -66,14 +67,14 @@ a {
 }
 
 #caption {
-    cursor: pointer;
+    /* cursor: pointer; */
     display: inline;
     /* color: #ffffff; */
     color: black;
     padding: 0 1vw;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    text-align: center;
+    font-weight: none;
+    text-align: left;
     /* font-size: 5vw; */
     font-size: 2.8vw;
     /* font-size: 2.1vw; */
@@ -86,17 +87,25 @@ a {
     -webkit-font-smoothing: antialiased; */
 }
 
-#caption:hover {
+.product {
+    /* font-weight: bold;
+    font-style: italic; */
+    font-size: 12px;
+}
+
+/* #caption:hover {
     color: #fddaef;
     filter: drop-shadow(0px 0px 0.1em #fddaef);
     -webkit-text-stroke-color: #fddaef;
     cursor: pointer;
-    /* filter: drop-shadow(0px 0px 0.111em #000000); */
-}
+    /* filter: drop-shadow(0px 0px 0.111em #000000); 
+} */
 
 .waterproof {
-    font-style: italic;
+    font-weight: bold;
     white-space: nowrap;
+    /* font-style: normal; */
+    /* font-size: 88px; */
 }
 
 .text {

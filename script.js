@@ -101,16 +101,12 @@ let captions = [
     ["I’m gonna add this", "wp"],
     ["I usually use this", "wp"],
     ["wp", "in a lighter shade than the other one"],
-    ["wp"],
     ["This cute", "wp"],
     ["I’m in love with this", "wp"],
     ["wp", "is to me, the best in the world"],
-    ["I use", "wp"],
     ["Next in my routine, I use", "wp"],
     ["This is the", "wp"],
-    ["Next, I use this", "wp"],
     ["I start with", "wp"],
-    ["I use this", "wp"],
     ["I love this", "wp"],
     ["I’m not wasting any", "wp", "let me tell you"],
     ["So next, thank you mother for the best advice,", "wp"],
@@ -131,7 +127,6 @@ let captions = [
     ["Then I take my", "wp"],
     ["Gonna get my", "wp"],
     ["I really like this", "wp"],
-    ["wp"],
     ["Holy grail,", "wp"],
     ["The", "wp"],
     ["First step is", "wp"],
@@ -160,11 +155,8 @@ let captions = [
     ["Today, I’m gonna be using the", "wp"],
     ["This is my mom’s", "wp"],
     ["I have this", "wp"],
-    ["wp"],
     ["wp", "this one’s really good"],
     ["I found this", "wp", "at Sephora"],
-    ["I use this", "wp"],
-    ["This is the", "wp"],
     ["What I’m gonna start with is", "wp"],
     ["I’ll use this", "wp"],
     ["I have this product,", "wp"],
@@ -174,10 +166,8 @@ let captions = [
     ["I’ve talked about this", "wp", "before"]
     ["Next I’m gonna go in with the", "wp"],
     ["It is called", "wp"],
-    ["It’s the", "wp"],
     ["Number one,", "wp"],
     ["Go back in with the", "wp"],
-    ["My", "wp"],
     ["I’m gonna go in with my", "wp"],
     ["I’ll use my", "wp", "right here"],
     ["I like to use my", "wp"],
@@ -185,9 +175,7 @@ let captions = [
     ["We’re gonna go with", "wp"],
     ["Really quickly, we’re gonna go in with this", "wp"],
     ["wp", "just the darkest shade"],
-    ["As a last step,", "wp"],
     ["I’m just gonna go in with this", "wp"],
-    ["I’m using the", "wp"],
     ["wp", "I’ll just take a little bit on my finger"],
     ["Anyway, I’ve been doing the", "wp"],
     ["So what I use is the", "wp"],
@@ -198,10 +186,7 @@ let captions = [
     ["finish it off with the", "wp"],
     ["I pretty much only use", "wp"],
     ["The", "wp"],
-    ["The next step is my", "wp"],
-    ["wp", "is so good"],
     ["I literally just use", "wp", "again"],
-    ["I like", "wp"]
 ]
 
 const originalCaptions = [...captions];
@@ -211,6 +196,8 @@ let currentCaption = "";
 let newCaptionArray = [];
 let currentStringIndex = 0;
 let currentCaptionIndex = 0;
+let waterproofFontSize = 11;
+let captionFontSize = 100;
 let div;
 let mark;
 let captionDiv = document.getElementById("caption");
@@ -232,52 +219,55 @@ console.log("GRWM 4EVER XOXOXO");
 
 window.addEventListener("resize", onWindowResize);
 
-setTimeout(() => {
-    kickoff();
-}, 5000);
+// setTimeout(() => {
+//     kickoff();
+// }, 5000);
 
+kickoff();
 
 function kickoff() {
     mode = "caption";
     captionsDiv.style.display = "inline";
     captionsDiv.style.opacity = "1";
     chooseNewCaption();
-    renderText();
     clearTimeout(newCommentTimeout);
     clearTimeout(typingTimeout);
 }
 
-function renderText() {
-    renderCaption();
-}
-
 function renderCaption() {
     console.log(newCaptionArray);
-    if (currentCaptionIndex < newCaptionArray.length) {
-        let word2Add = newCaptionArray[currentCaptionIndex];
-        // if (word2Add == "Waterproof") {
-        //     word2Add = '<span class="waterproof">Waterproof</span>';
-        // }
+    // if (currentCaptionIndex < newCaptionArray.length) {
+    //     let word2Add = newCaptionArray[currentCaptionIndex];
 
-        if (currentCaptionIndex != 0) {
-            currentCaption = currentCaption + " " + word2Add;
-        } else {
-            currentCaption = word2Add;
-        }
-        captionDiv.innerHTML = currentCaption;
-        currentCaptionIndex++;
-        const newInterval = 111 + Math.random() * 333;
-        captionTypingTimeout = setTimeout(() => {
-            renderText();
-        }, newInterval);
-    } else {
-        chooseNewCaption();
-        // const newInterval = 3333 + Math.random() * 11111;
-        const newInterval = 3333;
-        captionTimeout = setTimeout(() => {
-            renderCaption();
-        }, newInterval);
-    }
+    //     if (currentCaptionIndex != 0) {
+    //         currentCaption = currentCaption + " " + word2Add;
+    //     } else {
+    //         currentCaption = word2Add;
+    //     }
+    //     captionDiv.innerHTML = currentCaption;
+    //     currentCaptionIndex++;
+    //     const newInterval = 111 + Math.random() * 333;
+    //     captionTypingTimeout = setTimeout(() => {
+    //         renderText();
+    //     }, newInterval);
+    // } else {
+    //     chooseNewCaption();
+    //     // const newInterval = 3333 + Math.random() * 11111;
+    //     const newInterval = 3333;
+    //     captionTimeout = setTimeout(() => {
+    //         renderCaption();
+    //     }, newInterval);
+    // }
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = currentCaption;
+    // newDiv.style.fontSize = 12 + Math.random() * 24 + "px";
+    // newDiv.style.fontSize = captionFontSize + "px";
+    // captionFontSize-=5;
+    newDiv.style.fontSize = 11 + "px";
+
+    captionDiv.appendChild(newDiv);
+    // const newBr = document.createElement("br");
+    // captionDiv.appendChild(newBr);
 }
 
 function chooseNewCaption() {
@@ -285,11 +275,14 @@ function chooseNewCaption() {
     currentCaption = "";
     const newCaptionIndex = Math.floor(Math.random() * captions.length);
     let chosenCaptionArray = captions[newCaptionIndex];
+    captions.splice(newCaptionIndex, 1);
 
     let finalCaption = "";
     for (let w = 0; w < chosenCaptionArray.length; w++) {
         if (chosenCaptionArray[w] == "wp") {
-            finalCaption = finalCaption + " " + waterproofBeautyProducts[Math.floor(Math.random() * waterproofBeautyProducts.length)] + " ";
+            const newWaterproofProductIndex = Math.floor(Math.random() * waterproofBeautyProducts.length);
+            finalCaption = finalCaption + " " + '<span class="product" style="font-size:' + waterproofFontSize + 'px;">' + waterproofBeautyProducts[newWaterproofProductIndex] + "</span>" + " ";
+            waterproofBeautyProducts.splice(newWaterproofProductIndex, 1);
         } else {
             finalCaption = finalCaption + chosenCaptionArray[w] + " ";
         }
@@ -298,6 +291,10 @@ function chooseNewCaption() {
     // finalCaption = "I really, really love this Lights, Camera, Splashes™ Waterproof Mascara";
     // finalCaption = "My loyalty lies with the Boi-ing Cakeless Full Coverage Waterproof Liquid Concealer"
     newCaption = finalCaption.replaceAll('.', '');
+    newCaption = newCaption.replaceAll('Waterproof', '<span class="waterproof" style="font-size:' + waterproofFontSize + 'px;">Waterproof</span>');
+    newCaption = newCaption.replaceAll('WATERPROOF', '<span class="waterproof">WATERPROOF</span>');
+
+    currentCaption = newCaption;
     // newCaption = finalCaption;
 
     // captions.splice(newCaptionIndex, 1);
@@ -316,23 +313,34 @@ function chooseNewCaption() {
     // newCaption = newCaption.toLowerCase();
     newCaption = newCaption.replaceAll(/\bi\b/g, "I"); // Only an isolated I should be uppercase
     newCaption = newCaption.replaceAll(/i'/g, "I'");
+    // const doubleLineLength = 55;
 
-    const doubleLineLength = 55;
+    // newCaptionArray = newCaption.split(" ");
+    // let wIndex = newCaptionArray.indexOf('Waterproof');
+    // if (wIndex < 0) {
+    //     wIndex = newCaptionArray.indexOf('WATERPROOF');
+    //     newCaptionArray[wIndex] = '<span class="waterproof">WATERPROOF</span>';
+    // } else {
+    //     newCaptionArray[wIndex] = '<span class="waterproof">Waterproof</span>';
+    // }
+    // console.log(newCaptionArray);
+    // if (newCaption.length >= doubleLineLength) {
+    //     console.log("splitting double line!")
+    //     const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
+    //     newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
+    // }
 
-    newCaptionArray = newCaption.split(" ");
-    let wIndex = newCaptionArray.indexOf('Waterproof');
-    if (wIndex < 0) {
-        wIndex = newCaptionArray.indexOf('WATERPROOF');
-        newCaptionArray[wIndex] = '<span class="waterproof">WATERPROOF</span>';
-    } else {
-        newCaptionArray[wIndex] = '<span class="waterproof">Waterproof</span>';
-    }
-    console.log(newCaptionArray);
-    if (newCaption.length >= doubleLineLength) {
-        console.log("splitting double line!")
-        const halfCaptionIndex = Math.floor(newCaptionArray.length * .47);
-        newCaptionArray[halfCaptionIndex] = newCaptionArray[halfCaptionIndex] + "<br>";
-    }
+    // currentCaption = "";
+    // for (let i = 0; i < newCaptionArray.length; i++) {
+    //     let word2Add = newCaptionArray[i];
+    //     if (i != 0) {
+    //         currentCaption = currentCaption + " " + word2Add;
+    //     } else {
+    //         currentCaption = word2Add;
+    //     }
+    // }
+    renderCaption();
+    waterproofFontSize++;
 }
 
 function randomIntFromInterval(min, max) {
@@ -344,3 +352,11 @@ function onWindowResize() {
     width = window.innerWidth;
     height = window.innerHeight;
 }
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'Space') {
+        event.preventDefault(); // prevent page scroll
+        chooseNewCaption();
+    }
+});
+
